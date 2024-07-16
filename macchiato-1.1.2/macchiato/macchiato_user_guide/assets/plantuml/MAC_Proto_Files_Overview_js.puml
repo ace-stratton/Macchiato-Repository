@@ -1,0 +1,10 @@
+@startuml
+
+package "SDE" {
+    [GUI]
+}
+
+[GUI] ..> [ProtocolNameClientAppGui.json] : load Interface model
+[ProtocolNameClientApp.js] <.. [GUI]: import protocol implementation
+
+@enduml

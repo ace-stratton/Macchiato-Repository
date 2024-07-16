@@ -1,0 +1,13 @@
+package org.endurosat.deploy
+
+// import the deployment specification
+import "../spec/BasicSpec.fdepl"
+
+// import the actual Franca interfaces we want to deploy 
+import "../interfaces/datacache_io.fidl"
+
+/**
+ * Define all the interfaces as a default deployment
+ */
+define org.endurosat.spec.BasicSpec for interface endurosat.pf.DataCache.data_cache { Gen_DataCache_Bindings = true }
+define org.endurosat.spec.BasicSpec for interface endurosat.pf.DataCache.data_cache { IsClient = true, Gen_DataCache_Bindings = true }

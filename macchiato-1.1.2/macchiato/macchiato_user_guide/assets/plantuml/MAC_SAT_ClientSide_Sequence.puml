@@ -1,0 +1,25 @@
+@startuml
+
+title MAC protocol Client-side sequence
+
+actor User
+participant clientApp as "LEDProtocolClientApp.c"
+participant protoClient as "LEDProtocolClient.c"
+participant satApi as "ESPS library"
+participant macDrv as "MAC Driver"
+
+== 1. Client context registration ==
+User -> clientApp: LEDClientAppInit()
+clientApp -> protoClient: LED_registerClientApi(LED_ClientApi_t *pCliApiHandlers)
+
+== 2. Sending a request to the protocol server ==
+clientApp -> protoClient: LED_setLedStateReq(ctx, u8LedId, newState)
+protoClient -> satApi: ESSA_Stack_SendFrame(...)
+satApi -> macDrv: MAC_DrvEnqMessage(...)
+
+== 3. Response received from server ==
+macDrv -> satApi: ESSA_Stack_DataDispatch(...)
+satApi -> protoClient: ESSA_Stack_ProtocolInfo_t::pfDataHandlerCbk(...)
+protoClient -> clientApp: LED_setLedStateResponseHandler(RespContext *pRespCtx, LEDsetLedStateResponseData_t *pResponseData)
+
+@enduml

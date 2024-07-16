@@ -1,0 +1,1219 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="User guide for the code generator Macchiato">
+      
+      
+        <meta name="author" content="EnduroSat">
+      
+      
+        <link rel="canonical" href="https://endurosat.com/guide/code_generation.html">
+      
+      
+        <link rel="prev" href="../quickstart.html">
+      
+      
+        <link rel="next" href="models.html">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+    
+    
+      
+        <title>Code Generation - Macchiato User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-generation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Macchiato User Guide" class="md-header__button md-logo" aria-label="Macchiato User Guide" data-md-component="logo">
+      
+  <img src="../assets/img/EnduroSat_horLogo_symbol@2x-min.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Macchiato User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Code Generation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../quickstart.html" class="md-tabs__link">
+      Quick-Start Guide
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="code_generation.html" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../faq.html" class="md-tabs__link">
+      FAQ
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../change_history.html" class="md-tabs__link">
+      Change history
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contacts.html" class="md-tabs__link">
+      Contacts
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Macchiato User Guide" class="md-nav__button md-logo" aria-label="Macchiato User Guide" data-md-component="logo">
+      
+  <img src="../assets/img/EnduroSat_horLogo_symbol@2x-min.png" alt="logo">
+
+    </a>
+    Macchiato User Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart.html" class="md-nav__link">
+        Quick-Start Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Code Generation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="code_generation.html" class="md-nav__link md-nav__link--active">
+        Code Generation
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#esps-function-protocol" class="md-nav__link">
+    ESPS Function Protocol
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#franca-idl-reference" class="md-nav__link">
+    Franca IDL reference
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macchiato-generators" class="md-nav__link">
+    Macchiato generators
+  </a>
+  
+    <nav class="md-nav" aria-label="Macchiato generators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latex-generation" class="md-nav__link">
+    Latex generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datacache-generation" class="md-nav__link">
+    Datacache generation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eclipse-ide-setup" class="md-nav__link">
+    Eclipse IDE setup
+  </a>
+  
+    <nav class="md-nav" aria-label="Eclipse IDE setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-workspace" class="md-nav__link">
+    Create a workspace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-new-project" class="md-nav__link">
+    Create a new project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-the-run-configuration" class="md-nav__link">
+    Add the run configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generated-files-and-folders" class="md-nav__link">
+    Generated files and folders
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#calling-macchiatojar" class="md-nav__link">
+    Calling macchiato.jar
+  </a>
+  
+    <nav class="md-nav" aria-label="Calling macchiato.jar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generated-files-and-folders_1" class="md-nav__link">
+    Generated files and folders
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merging-with-the-user-code" class="md-nav__link">
+    Merging with the User Code
+  </a>
+  
+    <nav class="md-nav" aria-label="Merging with the User Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge-operation" class="md-nav__link">
+    Merge operation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-call-the-merge" class="md-nav__link">
+    How to call the merge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="models.html" class="md-nav__link">
+        Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="output_c.html" class="md-nav__link">
+        C Output
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="output_py.html" class="md-nav__link">
+        Python Output
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="output_js.html" class="md-nav__link">
+        JavaScript Output
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq.html" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../change_history.html" class="md-nav__link">
+        Change history
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contacts.html" class="md-nav__link">
+        Contacts
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="code-generation">Code Generation</h1>
+<h2 id="esps-function-protocol"><abbr title="EnduroSat Protocol Stack">ESPS</abbr> Function Protocol</h2>
+<p>At present, Macchiato provides code generators targeted to the <abbr title="EnduroSat Protocol Stack">ESPS</abbr> Function Protocol so the code that Macchiato generates for the satellite modules is the implementation of the <abbr title="Function Protocol (a custom command and query protocol for ESPS I)">FP</abbr> for the specific interfaces listed in your deployment model. In a typical system, the code lives in the <abbr title="Function Protocol (a custom command and query protocol for ESPS I)">FP</abbr> layer as shown below:</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PHY</td>
+<td>Physical layer (in <abbr title="EnduroSat Protocol Stack">ESPS</abbr> I case, this is <abbr title="Universal Asynchronous Receiver-Trasnmitter">UART</abbr> over RS485)</td>
+</tr>
+<tr>
+<td><abbr title="Media Access Control">MAC</abbr></td>
+<td><abbr title="EnduroSat Protocol Stack">ESPS</abbr> bus access driver</td>
+</tr>
+<tr>
+<td><abbr title="Function Protocol (a custom command and query protocol for ESPS I)">FP</abbr></td>
+<td>Function Protocol layer</td>
+</tr>
+<tr>
+<td>APP</td>
+<td>User applications</td>
+</tr>
+</tbody>
+</table>
+<h2 id="franca-idl-reference">Franca <abbr title="Interface Definition Language">IDL</abbr> reference</h2>
+<p>The Franca <abbr title="Interface Definition Language">IDL</abbr> is a domain specific language for interface definition and as such it provides many specific features. Full language reference is provided in the Macchiato package. The code generators that we implemented rely only on specific features though. Support for others may be introduced in the future. Check the tabs below to see what Franca features you can rely on to describe interfaces...</p>
+<div class="admonition features">
+<p class="admonition-title">Features</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Data types</label><label for="__tabbed_1_2">Language constructs</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Every Franca language construct has to be supported by the Macchiato code generators in order to convert it to working source code. The current version of Macchiato supports the following Franca base types:</p>
+<table>
+<thead>
+<tr>
+<th>Type name</th>
+<th>Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UInt8</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Int8</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>UInt16</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Int16</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>UInt32</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Int32</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>UInt64</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Int64</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Integer</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Float</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Double</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>String</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>ByteBuffer</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p>Similarly, the current version of Macchiato supports the following Franca language constructs:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>type Supported</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primitive constant</td>
+<td><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td>Complex constant</td>
+<td><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td>TypeCollection</td>
+<td><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td>Interface inheritance</td>
+<td><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td>Attributes</td>
+<td><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td>Methods</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td>Broadcasts</td>
+<td><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td>Contracts</td>
+<td><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td>Structured comments</td>
+<td><img alt="🌥" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f325.svg" title=":white_sun_cloud:" /> (only partial support)</td>
+</tr>
+<tr>
+<td>Deployment models</td>
+<td><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<h2 id="macchiato-generators">Macchiato generators</h2>
+<p>This version of Macchiato contains the following generators:</p>
+<table>
+<thead>
+<tr>
+<th>Generator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C</td>
+<td><abbr title="EnduroSat Protocol Stack">ESPS</abbr> I C source code generator (client/server bindings)</td>
+</tr>
+<tr>
+<td>python</td>
+<td><abbr title="EnduroSat Protocol Stack">ESPS</abbr> I Python source code/<abbr title="Graphic User Interface">GUI</abbr> YAML generator. Python interface</td>
+</tr>
+<tr>
+<td>JS</td>
+<td><abbr title="EnduroSat Protocol Stack">ESPS</abbr> I JavaScript source code (JavaScript client <abbr title="Application Programming Interface">API</abbr>) for the <abbr title="Space Development Environment">SDE</abbr><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>LaTex</td>
+<td><abbr title="EnduroSat Protocol Stack">ESPS</abbr> I LaTeX documentation generator</td>
+</tr>
+<tr>
+<td>DataCache</td>
+<td>DataCache module generation (C, python and fidl for <abbr title="EnduroSat Protocol Stack">ESPS</abbr>)</td>
+</tr>
+</tbody>
+</table>
+<p>You might have observed that in the following sections not all the generators are explained. This is because they are only relevant for certain uses of the EnduroSat's products. These are the LaTex and the DataCache generators.</p>
+<h3 id="latex-generation">Latex generation</h3>
+<p>The LaTex generator creates a reference documentation for the interfaces described in the fidl files. This can be used to generate automatic documentation based on the comments and description tags (<code>&lt;** @description: ... **&gt;</code>) that can be added in the fidl files. Something like this:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code>    version { major 0 minor 1 }
+
+    &lt;** @description: Comment to describe the enum type **&gt;
+    enumeration VersionVariant
+    {
+        &lt;** @description: comments in individual values **&gt;
+        DevelopmentState = 0xFF
+        &lt;** @description: comments in individual values **&gt;
+        ReleaseCandidate = 0
+        &lt;** @description: comments in individual values **&gt;
+        Release = 1
+    }
+</code></pre></div></td></tr></table></div>
+<h3 id="datacache-generation">Datacache generation</h3>
+<p>The DataCache generator, generates the code in C and Python to interact with the datacache structures defined in the <code>DataCache.fidl</code> file. It also generates a fidl file that can be used with the C generator to generate the <abbr title="EnduroSat Protocol Stack">ESPS</abbr> interface to gather the datacache types previously generated. This specific generator uses other files that may not be included in your Macchiato release.</p>
+<p>This generation will be usefull in the case you are using EnduroSat's <abbr title="On-board Computer">OBC</abbr> Starter Kit. If you think you need to use them, do not hesitate to <a href="../contacts.html">reach out</a>.</p>
+<h2 id="eclipse-ide-setup">Eclipse <abbr title="Integrated Development Environment">IDE</abbr> setup</h2>
+<p>In case you need to create your own interfaces or to modify the deployment specifications or models, <strong>we highly recommend</strong> that you use the <a href="https://www.eclipse.org/downloads/packages/release/2021-12/r/eclipse-ide-java-and-dsl-developers">Eclipse <abbr title="Integrated Development Environment">IDE</abbr> for Java and DSL Developers</a> for the best possible experience. It will help you produce error-free interfaces thanks to the syntax highlighting.</p>
+<p>The following steps will help you to setup a new xtend project to be able to edit your interfaces and generate the code.</p>
+<h3 id="create-a-workspace">Create a workspace</h3>
+<p>Create a folder where you can later include the xtend project. Open Eclipse and select the folder you just created as a workspace.</p>
+<h3 id="create-a-new-project">Create a new project</h3>
+<p>You can create an empty project from the PackageExplorer tab (if there are no projects already in the workspace):</p>
+<p><img alt="image" src="../assets/img/eclipse-create-project.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you don't see that option, you can create a project from the menu <em>File</em> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg></span> <em>New</em> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg></span> <em>Project...</em></p>
+</div>
+<p>A window will pop-up. You can select <em>Project</em> under the <em>General</em> menu:</p>
+<p><img alt="image" src="../assets/img/eclipse-select-project.png" /></p>
+<p>Give your project a name and move the files inside the Macchiato package to the folder.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can just drag and drop the files in the Eclipse <abbr title="Integrated Development Environment">IDE</abbr> and it will usually ask whether you want to copy the files or to link them. It is recommended to copy them.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Once you have the files, you can try to open one of the .fidl files in the editor. Eclipse will prompt you with the option to change the project to a Xtend project type. This will keep the highlighting and the syntax checks and it will generate the intermediate files in the folder <code>src-gen</code>.</p>
+<p><img alt="image" src="../assets/img/eclipse-xtext-project.png" /></p>
+</div>
+<h3 id="add-the-run-configuration">Add the run configuration</h3>
+<p>Once the project has the files, you can create an external run configuration to be able to generate the code from the fidl files using the provided <abbr title="Java Runtime Environment">jre</abbr> and the macchiato.jar. Select the black arrow next to the icon of the external tools, in the tools bar, to see more options. Then select <em>External tools configuration...</em>:</p>
+<p><img alt="image" src="../assets/img/eclipse-modify-external-tools.png" /></p>
+<p>You can double click on <em>Program</em> in the left side to create a new configuration and then fill up the following information:</p>
+<ol>
+<li>Name: descriptive name for the run command</li>
+<li>Location: from <em>Browse Workspace</em>, select the java.exe file within the <abbr title="Java Runtime Environment">jre</abbr> folder <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
+<li>Working Directory: select the project directory</li>
+<li>Arguments: add arguments to execute the .jar file with java.exe: <code>-jar macchiato.jar --gen-c models\org\endurosat\deploy\deploy_all_default.fdepl</code></li>
+</ol>
+<p><img alt="image" src="../assets/img/eclipse-add-run-configuration.png" /></p>
+<p>Once you apply your changes you can run the configuration and you should see the output in the Console view of the Eclipse <abbr title="Integrated Development Environment">IDE</abbr>. For more information about the options that the <em>macchiato.jar</em> file admits, go to the <a href="#calling-macchiatojar">calling macchiato.jar</a> section.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If the Eclipse <abbr title="Integrated Development Environment">IDE</abbr> fails to run, you can always edit and run the generation script, <code>start_gen.bat</code>, as described in the following section.</p>
+</div>
+<h3 id="generated-files-and-folders">Generated files and folders</h3>
+<table>
+<thead>
+<tr>
+<th>Folder / File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen</td>
+<td>xtend generated java sources</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-c</td>
+<td>Macchiato generated C code</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-py</td>
+<td>Macchiato generated Python code</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-js</td>
+<td>Macchiato generated JavaScript code</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-tex</td>
+<td>Macchiato generated LaTex documentation</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-dc</td>
+<td>Macchiato generated DataCache fidls</td>
+</tr>
+</tbody>
+</table>
+<h2 id="calling-macchiatojar">Calling macchiato.jar</h2>
+<p>Instead of using the script <code>start_gen.bat</code>, which you can always modify to fulfil your needs, you can call the generator from a command window.
+The command for the generation has the following structure:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <code>java.exe</code> called, should be the one located in the <code>jre</code> folder of Macchiato. Running Macchiato with other versions of the <abbr title="Java Runtime Environment">jre</abbr> might lead to unexpected errors.</p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>java -jar macchiato.jar GENERATOR FDEPL_FILE [--merge MERGE_FOLDER] [-v, --verbose]
+</code></pre></div></td></tr></table></div>
+<ul>
+<li><code>&lt;GENERATOR&gt;</code>: Type of generator to use. Each generator will generate source code in a particular language (i.e. <code>--gen-c</code> is for C)</li>
+<li><code>&lt;FDEPL_FILE&gt;</code>: Path to the deployment file that contains the definition of the specification and the interface to be generated</li>
+<li><code>--merge</code>: Auto merge option to merge the user code with the new generation of the code</li>
+<li><code>&lt;MERGE_FOLDER&gt;</code>: Path to the folder that contains the user code to be merged</li>
+<li><code>-v</code> or <code>--verbose</code>: Any of these options enables debug messages that provide additional 
+information of the generation. It will print out every file that is generated.</li>
+</ul>
+<p>If you run <code>macchiatto.jar</code> with no arguments, you will see the usage information and a list of supported generators.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>&gt; jre\bin\java.exe -jar macchiato.jar
+
+
+
+... EnduroSat ...
+                              __    _       __
+   ____ ___  ____ ___________/ /_  (_)___ _/ /_____
+  / __ `__ \/ __ `/ ___/ ___/ __ \/ / __ `/ __/ __ \
+ / / / / / / /_/ / /__/ /__/ / / / / /_/ / /_/ /_/ /
+/_/ /_/ /_/\__,_/\___/\___/_/ /_/_/\__,_/\__/\____/ v1.0.19
+
+
+Usage: java -jar macchiato.jar GENERATOR FDEPL_FILE [--merge MERGE_FOLDER] [-v, --verbose]
+Available generators:
+--gen-c: ESPSI C source code generator (client/server bindings) [v2.12]
+--gen-py: ESPSI Python source code generator (Python client API bindings) [v1.9]
+--gen-js: ESPSI JavaScript source code (JavaScript client API) [v3.2]
+--gen-tex: ESPSI LaTeX documentation generator [v1.1]
+--gen-dc: FIDL C DataCache source code generator [v0.7]
+The output will be in the folder &#39;src-&lt;GENERATOR&gt;&#39;. Old generations there will be overwritten!
+</code></pre></div></td></tr></table></div>
+<p>The default file with the deployment models for the code generation is located in <code>models\org\endurosat\deploy\deploy_all_default.fdepl</code>.</p>
+<h3 id="generated-files-and-folders_1">Generated files and folders</h3>
+<table>
+<thead>
+<tr>
+<th>Folder / File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-c</td>
+<td>Macchiato generated C code</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-py</td>
+<td>Macchiato generated Python code</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-js</td>
+<td>Macchiato generated JavaScript code</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-tex</td>
+<td>Macchiato generated LaTex documentation</td>
+</tr>
+<tr>
+<td><img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" />     src-gen-dc</td>
+<td>Macchiato generated DataCache code</td>
+</tr>
+</tbody>
+</table>
+<p>Continue to the next sections to get more information about each of the generated outputs.</p>
+<h2 id="merging-with-the-user-code">Merging with the User Code</h2>
+<p>There is the possibility to merge the generated code with a previosly version and to keep the user code.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Always keep a copy of the code before merging. Just in case.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is only supported for the <strong>C Code Generator</strong>.</p>
+</div>
+<p>You can provide the option <code>--merge</code> and the folder where the previous generation is. Macchiato will gather all the code that is between user tags. These tags usually have something like <code>@START_USER@</code> or <code>@USER_VAR_SECTION_START@</code>. Whatever is between the <code>START</code> tag and the <code>END</code> tag is going to be kept by Macchiato and added in the new generated files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not all the generated files have user code tags in them. For this version of Macchiato, only the files that are <code>FP_&lt;protocol&gt;ClientApp.c</code> or <code>FP_&lt;protocol&gt;ServerApp.c</code>.</p>
+</div>
+<p>Example of user tags:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// @START_USER@ USER_LOCAL_FUNC_DECL</span>
+<span class="c1">// Place static function declarations here to preserve them during merge!!!</span>
+<span class="c1">// @END_USER@ USER_LOCAL_FUNC_DECL</span>
+
+<span class="n">or</span><span class="p">...</span>
+
+<span class="w">        </span><span class="c1">// @USER_CODE_SECTION_START@LED::setLedState@</span>
+
+<span class="w">        </span><span class="c1">// TODO: Put your implementation to handle the</span>
+<span class="w">        </span><span class="c1">// received server response here!</span>
+
+<span class="w">        </span><span class="c1">// @USER_CODE_SECTION_END@LED::setLedState@</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>If the tags are modified by the user the merge will not be ok and it may end up with the loss of some of the user code.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Modifying the name of a method in the fidl files will generate a different tag and, therefore, the merge will fail for that method.</p>
+</div>
+<h3 id="merge-operation">Merge operation</h3>
+<p>Here are described the steps followed by Macchiato from the generation to the merge of the user code. Imagine we are calling Macchiato to generate the <code>LED</code> interface and to merge it with the contents in the folder <code>my_project/my_FP_Protocols</code>.</p>
+<ol>
+<li>First Macchiato will <strong>generate</strong> the source <strong>from the user fidl</strong> file as normally and save it in the <code>src-gen-c/LED</code> folder.</li>
+<li>Then it will look for the <strong>user files</strong> which should be located in <code>my_project/my_FP_Protocols/LED</code>.</li>
+<li>It will read the files there and <strong>keep the user code</strong> found between tags.</li>
+<li>Then <strong>merge the contents</strong> of the generated code in <code>src-gen-c/LED</code> with the code found in the tags.</li>
+<li>Overwrite the contents in <code>my_project/my_FP_Protocols/LED</code> with the merged new generation.</li>
+</ol>
+<p>If a tag is not anymore in the new generated code, it will not be in the new merged files.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Macchiato doesn't ask for confirmation when merging the content so it is advisable to keep a copy in a git repository or a backup of some kind.</p>
+</div>
+<p>Macchiatto will expect to find the whole folder hierarchy in the user code path (i.e. LED/<strong>v1.0</strong>/FP_Common/FP_Helpers.h). Therefore, if you need to change the version of the interface you are generating, Macchiatto will not find the user code since it will be in the previous version folder.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you update the interface version, you can trick macchiato into merging by renaming the old version folder to the new. Run macchiato with the merge option again to recover the usercode from the files.</p>
+<p>As an example, if we had the version v1.0 of the LED interface, and we are generating the version v1.1, we should rename our folder as <code>my_project/my_FP_Protocols/LED/v1.1/rest_of_subfolders</code>.</p>
+</div>
+<h3 id="how-to-call-the-merge">How to call the merge</h3>
+<p>If you want to merge your user code with the new generated code you will need to add the <code>--merge</code> option. Like this:</p>
+<p><code>java -jar macchiato.jar --gen-c [my\deployment\model.fdepl] --merge path\to\my\code</code></p>
+<p>You can call this directly from a command window within the macchiato folder like explained in the <a href="../quickstart.html#octicons-terminal-16-for-console-lovers">quickstart section</a>.</p>
+<p>If you are using the Eclipse <abbr title="Integrated Development Environment">IDE</abbr> for the generation, you will need to add the additional arguments to the <em>External Tools Configuration</em>. Open the confituration as shown in the picture below:</p>
+<p><img alt="" src="../assets/img/eclipse-modify-external-tools.png" /></p>
+<p>Then add the merge option and the path to the folder that contains the user code to the <em>Generate C Code</em> configuration and Apply the changes:</p>
+<p><img alt="" src="../assets/img/eclipse-add-merge-option.png" /></p>
+<p>Running that configuration now should merge the C Code with your previous generated code, keeping the user additions within the tags.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Space Development Environmet is a different Endurosat product. <a href="../contacts.html">Contact us</a> for more information.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>It is important to use the given version with Macchiato, otherwise you could get unexpected behaviour or build errors.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="">
+      
+        
+        <a href="../quickstart.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Quick-Start Guide" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Quick-Start Guide
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="models.html" class="md-footer__link md-footer__link--next" aria-label="Next: Models" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Models
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            <i>Privileged and confidential</i>
+          </div>
+        
+      </div>
+      <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/endurosat/" target="_blank" rel="noopener" title="EnduroSat on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "search.suggest", "search.highlight", "search.share", "localsearch", "navigation.instant", "navigation.tabs", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+
+<script src="https://unpkg.com/iframe-worker/polyfill"></script>
+<script src="../search/search_index.js"></script>
+
+
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

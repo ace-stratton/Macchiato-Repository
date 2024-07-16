@@ -1,0 +1,32 @@
+package org.endurosat.deploy
+
+// import the deployment specification
+import "../spec/BasicSpec.fdepl"
+import "../spec/CalibrationSpec.fdepl"
+
+// import the actual Franca interfaces we want to deploy
+import "../interfaces/PingPong.fidl"
+import "../interfaces/LED.fidl"
+
+/**
+ * Defines configuration and interfaces for all models: their endianess, calibration configuration and whether to
+ * generate client or server code
+ */
+// Client generation
+define org.endurosat.spec.BasicSpec for interface myInterfaces.LED {
+    IsClient = true
+}
+
+define org.endurosat.spec.BasicSpec for interface myInterfaces.LED {
+    IsClient = false
+}
+
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.PingPong {
+    IsClient = false
+}
+
+
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.PingPong {
+    IsClient = true
+}
+

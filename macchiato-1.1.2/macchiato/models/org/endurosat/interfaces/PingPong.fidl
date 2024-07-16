@@ -1,0 +1,33 @@
+package endurosat.macif
+
+<** @description: PingPong Protocol
+    @details: id = 104 
+**>
+
+interface PingPong
+{
+    version { major 0 minor 1 }
+    
+	struct sPing
+	{
+		UInt8   Size
+		<** @details: size = 16 **>
+		UInt8[] Data
+	}
+
+    <** @description: Ping 
+      @details: id = 0x000001
+    **>
+    method Ping
+    {
+    	in
+    	{
+    		sPing Data
+    	}
+    	out
+    	{
+			sPing opResult
+    	}
+    }
+    
+}

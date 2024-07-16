@@ -1,0 +1,32 @@
+@startuml
+
+title MAC protocol Server-side sequence
+
+actor User
+participant serverApp as "LEDProtocolServerApp.c"
+participant protoServer as "LEDProtocolServer.c"
+participant protoServerCommon as "ProtocolServerCommon.c"
+participant satApi as "ESPS library"
+participant macDrv as "MAC Driver"
+
+== 1. Server context registration ==
+User -> serverApp: LEDServerAppInit()
+serverApp -> protoServer: LED_registerServerApi(LED_ServerApi_t *pCliApiHandlers)
+
+== 2. Handling a client request ==
+macDrv -> satApi: ESSA_Stack_DataDispatch(...)
+satApi -> protoServer: ESSA_Stack_ProtocolInfo_t::pfDataHandlerCbk(...)
+opt Requested function is supported
+protoServer -> serverApp: LED_setLedStateRequestHandler(ReqContext_t *ctx, LEDsetKedStateRequestData_t *pRequestData)
+== 3. Sending a response to the client ==
+serverApp -> protoServer: LED_setLedStateResp(RespContext_t *ctx, ErrorStatus_t status)
+protoServer -> satApi: ESSA_Stack_SendFrameReply(...)
+satApi -> macDrv: MAC_DrvEnqMessage(...)
+else else
+== 3. Protocol error response to client ==
+protoServer -> protoServerCommon: ProtocolSendErrorResp(ESSATMAC_Context *pMACContext, funcIdType_t funcId)
+protoServerCommon -> satApi: ESSA_Stack_SendFrameReply(...)
+satApi -> macDrv: MAC_DrvEnqMessage(...)
+end opt
+
+@enduml

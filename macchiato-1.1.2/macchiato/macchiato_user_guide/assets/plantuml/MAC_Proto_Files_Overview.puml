@@ -1,0 +1,59 @@
+@startuml
+
+title <b><<Protocol-over-MAC>> C code generation files overview</b>
+
+package "Diagram key" {
+    [file1.c] ..> [file2.h]: <<includes>>
+    [file3.c] -> [file4.c]: <<requires>>
+}
+
+package "Client app" {
+    [ProtocolClientApp.c]
+}
+
+package "Server app" {
+    [ProtocolServerApp.c]
+}
+
+package "Client-side" {
+    [ProtocolClient.c]
+    [ProtocolClient.h]
+}
+
+package "Server-side" {
+    [ProtocolServer.c]
+    [ProtocolServer.h]
+    [ProtocolServerCommon.h]
+    [ProtocolServerCommon.c]
+}
+
+package "Protocol-specific headers" {
+    [ProtocolTypes.h]
+}
+
+package "Common protocol headers" {
+    [BaseProtocolTypes.h]
+}
+
+package "ESSA stack headers" {
+    [ESSA_Stack.h]
+}
+
+[ProtocolClientApp.c] -> [ProtocolClient.c]
+[ProtocolClientApp.c] ..> [ProtocolClient.h]
+[ProtocolServerApp.c] -> [ProtocolServer.c]
+[ProtocolServerApp.c] ..> [ProtocolServer.h]
+
+[ProtocolClient.c] ..> [ProtocolClient.h]
+[ProtocolTypes.h] ..> [BaseProtocolTypes.h]
+[ProtocolClient.h] ..> [ProtocolTypes.h]
+[BaseProtocolTypes.h] ..> [ESSA_Stack.h]
+
+[ProtocolServer.c] ..> [ProtocolServer.h]
+[ProtocolServer.c] -> [ProtocolServerCommon.c]
+[ProtocolServer.h] ..> [ProtocolTypes.h]
+[ProtocolServer.c] ..> [ProtocolServerCommon.h]
+[ProtocolServerCommon.h] ..> [BaseProtocolTypes.h]
+[ProtocolServerCommon.c] ..> [ProtocolServerCommon.h]
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+
+title <b>Files Structure</b>
+
+package "FIDL sources" {
+    [interface.fidl] --> [deployment.fdepl]
+    [specification.fdepl] --> [deployment.fdepl]
+    [deployment.fdepl]
+}
+note "Given by the user." as fidl_sources_note
+
+
+[macchiato.java]
+
+package "Binders" {
+    [Gen_C.java]
+    [Gen_JS.java]
+    [Gen_LaTex.java]
+    [Gen_Py.java]
+}
+
+[macchiato.java] <---- [Gen_C.java]
+[macchiato.java] <---- [Gen_JS.java] : " 3.Generated text\n into output files"
+[macchiato.java] <---- [Gen_LaTex.java]
+[macchiato.java] <---- [Gen_Py.java]
+[macchiato.java] .- [folder src-gen-<generator>] : " 4.Generated output"
+
+[deployment.fdepl] ...> [macchiato.java]: " 1.Command line Input"
+
+[Xtend Generators] --> [Gen_C.java]
+[Xtend Generators] --> [Gen_JS.java]
+[Xtend Generators] --> [Gen_LaTex.java]
+[Xtend Generators] --> [Gen_Py.java] : " 2.FIDL sources\n into text"
+
+@enduml

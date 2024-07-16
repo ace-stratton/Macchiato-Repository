@@ -1,0 +1,1013 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="User guide for the code generator Macchiato">
+      
+      
+        <meta name="author" content="EnduroSat">
+      
+      
+        <link rel="canonical" href="https://endurosat.com/guide/models.html">
+      
+      
+        <link rel="prev" href="code_generation.html">
+      
+      
+        <link rel="next" href="output_c.html">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.18">
+    
+    
+      
+        <title>Models - Macchiato User Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.26e3688c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Macchiato User Guide" class="md-header__button md-logo" aria-label="Macchiato User Guide" data-md-component="logo">
+      
+  <img src="../assets/img/EnduroSat_horLogo_symbol@2x-min.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Macchiato User Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../quickstart.html" class="md-tabs__link">
+      Quick-Start Guide
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="code_generation.html" class="md-tabs__link md-tabs__link--active">
+        User Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../faq.html" class="md-tabs__link">
+      FAQ
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../change_history.html" class="md-tabs__link">
+      Change history
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contacts.html" class="md-tabs__link">
+      Contacts
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Macchiato User Guide" class="md-nav__button md-logo" aria-label="Macchiato User Guide" data-md-component="logo">
+      
+  <img src="../assets/img/EnduroSat_horLogo_symbol@2x-min.png" alt="logo">
+
+    </a>
+    Macchiato User Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart.html" class="md-nav__link">
+        Quick-Start Guide
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          User Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code_generation.html" class="md-nav__link">
+        Code Generation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="models.html" class="md-nav__link md-nav__link--active">
+        Models
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interfaces" class="md-nav__link">
+    Interfaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specifications" class="md-nav__link">
+    Specifications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployments" class="md-nav__link">
+    Deployments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-define-my-own-interfaces" class="md-nav__link">
+    How to define my own interfaces
+  </a>
+  
+    <nav class="md-nav" aria-label="How to define my own interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rules-to-be-respected-when-defining-your-own-interfaces" class="md-nav__link">
+    Rules to be respected when defining your own interfaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-of-user-defined-deployment" class="md-nav__link">
+    Example of user defined deployment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="output_c.html" class="md-nav__link">
+        C Output
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="output_py.html" class="md-nav__link">
+        Python Output
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="output_js.html" class="md-nav__link">
+        JavaScript Output
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq.html" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../change_history.html" class="md-nav__link">
+        Change history
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contacts.html" class="md-nav__link">
+        Contacts
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="models">Models</h1>
+<p>You will find some of the models we have defined so far in <img alt="📁" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f4c1.svg" title=":file_folder:" /> <code>models</code> as examples for your generations.</p>
+<h2 id="interfaces">Interfaces</h2>
+<p>Also known as <abbr title="Franca Interface Definition Language">FIDL</abbr> files, they contain the definitions of the interface.
+We can define methods, types, version of the interface and many other things.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <strong>version</strong> must be defined in the interface or the code generation will fail.</p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">interface</span> <span class="nc">SimpleInterface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">version</span><span class="w"> </span><span class="p">{</span><span class="n">major</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">minor</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+<span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="specifications">Specifications</h2>
+<p>Here we define some rules or some characteristics that our deployment models might have. For the current version of Macchiato, we must specify if the interface is going to be implemented as a server or as a client.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Macchiato comes with a <code>BasicSpec</code> defined in the file "BasicSpec.fdepl" which values should not be erased. This specification must be defined for the generator to run.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The generators use the contents defined in the specifications. To create a new one will not show any changes because the generator is already compiled without using the new specification.</p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// Some specifications...</span>
+
+<span class="n">specification</span><span class="w"> </span><span class="n">BasicSpec</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">interfaces</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// For the C Code generator to specify if the interface will be generated for a client or a server.</span>
+<span class="w">        </span><span class="n">IsClient</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Boolean</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// For the JS Generator, specify whether the target is going to be little endian or not.</span>
+<span class="w">        </span><span class="n">IsLittleEndian</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Boolean</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// Parameters for the DataCache generator</span>
+<span class="w">        </span><span class="n">DC_IO_DataTypesPackageName</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DataCacheTypes&quot;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="n">DC_IO_ProtocolID</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="mi">136</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="w">        </span><span class="n">Gen_DataCache_Bindings</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Boolean</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">attributes</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Timeout parameter for the DataCache generator</span>
+<span class="w">        </span><span class="n">Status_timeout</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">default</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// More specifications...</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="deployments">Deployments</h2>
+<p>The deployment definition will specify, for a certain interface, which specification applies. For example, we want to generate the code for an interface which is going to be used as a server, we must set <code>IsClient = false</code>.</p>
+<p>See the <a href="#example-of-user-defined-deployment">example below</a> for more details.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If we give a default value for the specifications, we don't need to specify all the values for each of them in the deployment file. The generator will take the default value for them but we would still need to have the deployment model defined.</p>
+</div>
+<h2 id="how-to-define-my-own-interfaces">How to define my own interfaces</h2>
+<p>You can define your own interfaces using the Franca Language. You can write them from scratch or you can use the examples given within Macchiato's release.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use the interface examples given within Macchiato to generate your own interfaces.</p>
+</div>
+<p>As an example, the specification <code>IsClient</code> is defined for every interface to be <code>true</code> or <code>false</code>. If this is not define when trying to generate, we will find this error:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>61   [main] ERROR .generators.macchiato.binders.Gen_C  - Error generating model user_deploy\UserDeploy.fdepl: Cannot invoke &quot;java.lang.Boolean.booleanValue()&quot; because &quot;this.bClient&quot; is null
+</code></pre></div></td></tr></table></div>
+<p><code>bClient</code> is an attribute in the generators which takes the value from that specification.</p>
+<h3 id="rules-to-be-respected-when-defining-your-own-interfaces">Rules to be respected when defining your own interfaces</h3>
+<p>Due to the fact that the generated code will be part of the <abbr title="EnduroSat Protocol Stack">ESPS</abbr> I, you have to make sure that you are following some rules and defining some necessary information in the interfaces and in the methods so the generated code can be properly integrated.</p>
+<p><strong>1. Define the Protocol ID</strong>: <abbr title="EnduroSat Protocol Stack">ESPS</abbr> I is using the IDs of the interface to redirect the received requests to the proper device and to be processed in the proper way. If the Protocol ID is not defined, the requests to that interface will not be processed. This is done by adding the following tag in the Interface description:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">My</span><span class="w"> </span><span class="n">brand</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kd">interface</span>
+    <span class="err">@</span><span class="nc">details</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span>
+<span class="o">**&gt;</span>
+<span class="kd">interface</span> <span class="nc">MyInterface</span>
+<span class="p">{</span><span class="w"> </span><span class="cm">/* Rest of the definition */</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The Protocol ID must be held in a <code>uint16_t</code> value (for the C generation). This is, a value between 0 - 65535.</p>
+</div>
+<p><strong>2. Define the method ID</strong>: Similar to the Protocol ID, every method in the interface should have an ID. This will tell the <abbr title="EnduroSat Protocol Stack">ESPS</abbr> I Stack how exactly process the request received. You need to include a simiarl tag before every method definition:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">specific</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">device</span><span class="p">.</span>
+<span class="w">        </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00000000</span>
+<span class="w">    </span><span class="o">**&gt;</span>
+<span class="w">    </span><span class="n">method</span><span class="w"> </span><span class="n">getSomeValueFromMyDevice</span>
+<span class="w">    </span><span class="p">{</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>3. Interfaces must contain a version</strong>: Franca gives the option to add a "version" when defining the interface. This is necessary for Macchiato to generate some of the output so if it is not defined in the interface, the generation will fail. This is how it should be defined:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">interface</span> <span class="nc">MyInterface</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">version</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">minor</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* Rest of the interface */</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>4. Do not modify the given deployment specifications</strong>: The specifications given with Macchiato (in <code>macchiato/modelsorg/endurosat/spec</code>) are match to generate the code using the java source within this specific version of Macchiato. If you modify the specifications, the macchiato.jar will not know how to parse it and it will not generate different code or, even worse, it might end up not generating anything.</p>
+<p><strong>5. Indicate the size for Arrays, ByteBuffers and Strings</strong>: It is very important to add the size of the <code>array</code>, <code>ByteBuffer</code> or <code>String</code> types. Similar to the method id, the size of a variable can be defined using a comment:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">    </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="n">retrieving</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">arrays</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">device</span>
+<span class="w">        </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00000055</span>
+<span class="w">    </span><span class="o">**&gt;</span>
+<span class="w">    </span><span class="n">method</span><span class="w"> </span><span class="n">methodUsingArrays</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">in</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">An</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">                </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">            </span><span class="n">UInt16</span><span class="o">[]</span><span class="w"> </span><span class="n">my_array</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">out</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">big</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="n">characters</span>
+<span class="w">                </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">my_string</span>
+
+<span class="w">            </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="kt">byte</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">contain</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="n">bytes</span>
+<span class="w">                </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">            </span><span class="n">ByteBuffer</span><span class="w"> </span><span class="n">my_buffer</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The <strong><abbr title="Function Protocol (a custom command and query protocol for ESPS I)">FP</abbr> frame is limited to 246 bytes</strong> (excluding the header). This means the size of the <em>in</em> data and the <em>out</em> data, separately, cannot be bigger than that.</p>
+<p>There are some additional considerations when Macchiato generates the code for this types:</p>
+<ul>
+<li>An <strong>array</strong> will be defined as an array of the type and the indicated size. In the example, <code>my_array</code> will use 5 bytes in the <abbr title="Function Protocol (a custom command and query protocol for ESPS I)">FP</abbr> frame.</li>
+<li><strong>String</strong> and <strong>ByteBuffer</strong> will always <strong>add a field to specify the current size</strong> that is used to the generated struct. This means that to the descibred maximum size, we must take in account an extra <code>UInt8</code>. From the example, <code>my_string</code> will use 11 bytes and <code>my_buffer</code> 26 of the total.</li>
+<li>An extra considerations for <strong>String</strong> types, the <abbr title="Function Protocol (a custom command and query protocol for ESPS I)">FP</abbr> generated code will write a <strong>null (<code>\0</code>) character to the end of the used bytes</strong>. This means that if the maximum size for a <strong>String</strong> type is 10, the usable size is actually 9.</li>
+<li>Additionally, for <strong>String</strong> and <strong>ByteBuffer</strong> types, if we try to send a bigger amount of bytes than the maximum length defined, <strong>the data will be truncated</strong> to fit the <strong>ByteBuffer</strong> field.</li>
+</ul>
+</div>
+<h3 id="example-of-user-defined-deployment">Example of user defined deployment</h3>
+<p>For this example, lets consider the following directory structure:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code>macchiato
+├───macchiato.jar
+├───jre
+├───models
+│   └───org
+│       └───endurosat
+│           ├───interfaces
+│           ├───deploy
+│           └───spec
+│               └───BasicSpec.fdepl
+└───user_deploy
+    ├───user_deploy.fdepl
+    └───user_interface.fidl
+</code></pre></div></td></tr></table></div></p>
+<p>We can define an Interface called <code>SimpleInterface</code> in the file <code>user_interface.fidl</code> like</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">package</span><span class="w"> </span><span class="nn">userdeploy</span>
+
+<span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Simple</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="kd">interface</span><span class="err">.</span>
+    <span class="err">@</span><span class="nc">details</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span>
+<span class="o">**&gt;</span>
+<span class="kd">interface</span> <span class="nc">SimpleInterface</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">version</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">minor</span><span class="w"> </span><span class="mi">0</span><span class="p">}</span>
+
+<span class="w">    </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">structure</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">    </span><span class="n">struct</span><span class="w"> </span><span class="n">SomeStruct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">comment</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">particular</span><span class="w"> </span><span class="n">field</span><span class="w">  </span>
+<span class="w">            </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">f1</span>
+<span class="w">        </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">field</span><span class="w"> </span>
+<span class="w">            </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">f2</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">Another</span><span class="w"> </span><span class="n">struct</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="n">and</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">    </span><span class="n">struct</span><span class="w"> </span><span class="n">StructA</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UInt8</span><span class="w"> </span><span class="n">size</span>
+<span class="w">        </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">        </span><span class="n">UInt8</span><span class="o">[]</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">Define</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">called</span><span class="w"> </span><span class="n">StringArray</span><span class="w"> </span>
+<span class="w">        </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">    </span><span class="n">array</span><span class="w"> </span><span class="n">StringArray</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">String</span>
+
+<span class="w">    </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">StructB</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">previosly</span><span class="w"> </span><span class="n">defined</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">StringArray</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">    </span><span class="n">struct</span><span class="w"> </span><span class="n">StructB</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">StringArray</span><span class="w"> </span><span class="n">field</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">specific</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">device</span><span class="p">.</span>
+<span class="w">        </span><span class="nd">@details</span><span class="p">:</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00000000</span>
+<span class="w">    </span><span class="o">**&gt;</span>
+<span class="w">    </span><span class="n">method</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">in</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">arg1</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">arg1</span>
+<span class="w">            </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">maybe</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">warning</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">arg2</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">            </span><span class="n">SomeStruct</span><span class="w"> </span><span class="n">arg2</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">out</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="o">&lt;**</span><span class="w"> </span><span class="nd">@description</span><span class="p">:</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">my</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="n">m1</span><span class="w"> </span><span class="o">**&gt;</span>
+<span class="w">            </span><span class="n">StructB</span><span class="w"> </span><span class="n">out1</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>We have to use the specification given with macchiato in the folder <code>macchiato/models/org/endurosat/spec/BasicSpec.fdepl</code> 
+which will be called from the deployment file. Not all the generators care for all of 
+the atributes defined in the specification. Also, any attribute that is not define will 
+take the "default" value defined in the specification. </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The macchiato.jar is ready to use the attributes defined in the specification BasicSpec.fdepl, the generation will fail if they are not defined. Also, any new attribute in a custom specification will not be taken in account. See the <a href="../faq.html#how-can-i-make-changes-to-the-generated-output-code-or-add-specific-attributes-to-the-deployment-specification">FAQ</a> for more information. </p>
+</div>
+<p>And finally, a deployment definition in the file <code>user_deploy.fdepl</code>, that calls both:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">package</span><span class="w"> </span><span class="n">userdeploy</span>
+
+<span class="c1">// import the deployment specification from Macchiato</span>
+<span class="n">import</span><span class="w"> </span><span class="s">&quot;../models/org/endurosat/spec/BasicSpec.fdepl&quot;</span>
+
+<span class="c1">// import the actual Franca interfaces we want to deploy</span>
+<span class="n">import</span><span class="w"> </span><span class="s">&quot;user_interface.fidl&quot;</span>
+
+<span class="cm">/**</span>
+<span class="cm">* One example deployment of SimpleInterface according to specification BasicSpec.</span>
+<span class="cm">*/</span>
+
+<span class="n">define</span><span class="w"> </span><span class="n">org</span><span class="p">.</span><span class="n">endurosat</span><span class="p">.</span><span class="n">spec</span><span class="p">.</span><span class="n">BasicSpec</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">interface</span><span class="w"> </span><span class="n">userdeploy</span><span class="p">.</span><span class="n">SimpleInterface</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">IsClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>We would generate the code in C for this interface as follows:</p>
+<p><code>jre/bin/java.exe -jar macchiato.jar --gen-c user_deploy/user_deploy.fdepl</code></p>
+<p>And we can find the output in the folder <em>src-gen-c</em>.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="">
+      
+        
+        <a href="code_generation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Code Generation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Code Generation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="output_c.html" class="md-footer__link md-footer__link--next" aria-label="Next: C Output" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              C Output
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            <i>Privileged and confidential</i>
+          </div>
+        
+      </div>
+      <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://www.linkedin.com/company/endurosat/" target="_blank" rel="noopener" title="EnduroSat on LinkedIn" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+<script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "search.suggest", "search.highlight", "search.share", "localsearch", "navigation.instant", "navigation.tabs", "navigation.top", "toc.integrate"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+
+<script src="https://unpkg.com/iframe-worker/polyfill"></script>
+<script src="../search/search_index.js"></script>
+
+
+    
+      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+      
+    
+  </body>
+</html>

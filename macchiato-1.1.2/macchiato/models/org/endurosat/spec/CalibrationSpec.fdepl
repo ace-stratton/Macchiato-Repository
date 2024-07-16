@@ -1,0 +1,28 @@
+package org.endurosat.spec
+import "DecoratorSpec.fdepl"
+
+/**
+ * A deployment model for the calibration of data.
+ */
+specification CalibrationSpec extends org.endurosat.spec.DecoratorSpec {
+    for struct_fields {
+        CalibratedType : String ( default: "" ) ;
+        CalibrationAlg : String ( default: "" ) ;
+        CalibrationParams : String [] ( default: {
+            ""
+        }
+        ) ;
+    }
+    for arguments {
+        CalibratedType : String ( default: "" ) ;
+        CalibrationAlg : String ( default: "" ) ;
+        CalibrationParams : String [] ( default: {
+            ""
+        }
+        ) ;
+    }
+    for structs {
+        CalibratedType : String ( default: "" ) ;
+        CalibrationAlg : String ( default: "" ) ;
+    }
+}

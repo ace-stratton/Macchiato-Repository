@@ -1,0 +1,39 @@
+@startuml
+
+title Function Protocol Layer class diagram
+
+class LEDClientApp {
+    # LED_setLedStateResponseHandlerImpl(RespContext_t *pRespCtx, LEDsetLedStateResponseData_t *pResponseData) : void
+    + LEDClientAppInit(void): void
+}
+
+class LEDServerApp {
+    # LED_setLedStateRequestHandlerImpl(ReqContext_t *pReqCtx, LEDsetLedStateRequestData_t *pRequestData) : void
+    + LEDServerAppInit(void) : void
+}
+
+class LEDProtocolClient {
+    + LED_registerClientApi(LED_ClientApi_t *pCliApiHandlers) : void
+    + LED_setLedStateReq(ReqContext_t *ctx, uint8_t u8ledId, LedState_t newState) : ESSA_eStack_codes_t
+    + LED_getClientProtocolDescriptor(void) : ESSA_pStack_FunctionProtocolInfo_t
+}
+
+class LEDProtocolServer {
+    + LED_registerServerApi(LED_ServerApi_t *pSrvApiHandlers) : void
+    + LED_setLedStateResp(RespContext_t *ctx, ErrorStatus_t status) : ESSA_eStack_codes_t
+    + LED_getServerProtocolDescriptor(void) : ESSA_pStack_FunctionProtocolInfo_t
+}
+
+class ProtocolServerCommon {
+    + ProtocolSendErrorResp(ESSATMAC_Context *pMACContext, funcIdType_t funcId) : ESSA_eStack_codes_t
+}
+
+LEDClientApp ..> LEDProtocolClient: <<request>>
+LEDServerApp ..> LEDProtocolServer: <<response>>
+LEDProtocolServer ..> ProtocolServerCommon
+LEDProtocolClient --> LEDClientApp: <<response callback>>
+LEDProtocolServer --> LEDServerApp: <<request callback>>
+LEDProtocolServer ..> ESSA_Stack
+LEDProtocolClient ..> ESSA_Stack
+
+@enduml

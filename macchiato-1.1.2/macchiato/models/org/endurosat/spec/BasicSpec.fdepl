@@ -1,0 +1,24 @@
+package org.endurosat.spec
+
+/**
+ * Sample and base spec used to set general properties of each model
+ */
+
+specification BasicSpec {
+    for interfaces {
+    	// For the C Code generator to specify if the interface will be generated for a client or a server.
+        IsClient : Boolean ( default: false ) ;
+        
+		// For the JS Generator, specify whether the target is going to be little endian or not.
+        IsLittleEndian : Boolean ( default: true ) ;
+        
+        // Parameters for the DataCache generator 
+        DC_IO_DataTypesPackageName : String ( default: "DataCacheTypes" ) ;
+        DC_IO_ProtocolID : Integer ( default: 136 ) ;
+        Gen_DataCache_Bindings : Boolean ( default: false ) ;
+    }
+    for attributes {
+    	// Timeout parameter for the DataCache generator
+        Status_timeout : Integer ( default: 5000 ) ;
+    }
+}

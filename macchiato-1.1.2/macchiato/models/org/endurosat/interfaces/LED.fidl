@@ -1,0 +1,40 @@
+package myInterfaces
+
+<** @description: LED control interface - provides operations to control and query LED states 
+    @details: id = 111
+**>
+interface LED
+{
+    version { major 0 minor 1 }
+
+    <** @description: Supported LED states **>
+    enumeration LedState
+    {
+		OFF,
+		ON,
+		BLINKING
+    }
+
+    <** @description: Supported error status codes **>
+    enumeration ErrorStatus
+    {
+		SUCCESS,
+		FAILURE
+    }
+
+    <** @description: This function allows changing the state of an LED.
+        @details: id = 0x000001
+    **>
+    method setLedState {
+		in {
+			<** @description: LED identifier **>
+			UInt8 ledId
+			<** @description: Requested state of the LED **>
+			LedState newState
+		}
+		out {
+			<** @description: Indicates whether the LED state setting was applied successfully **>
+			ErrorStatus status
+		}
+    }
+}

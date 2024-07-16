@@ -1,0 +1,14 @@
+@startuml
+
+actor Developer
+
+[Deployment Model] --> [FIDL Definitions]
+[Deployment Model] --> [Deployment Specs]
+[Java app host] ---> [Deployment Model]: (1) <<parse>>
+[Java app host] --> [Xtend/Java generators]: (2) <<feeds model data to>>
+[Xtend/Java generators] --> [source files]: (3) <<produce>>
+[User app] -> [source files]: (4) <<include>>
+Developer -> [source files]: (5) <<fill-in generated templates>>
+Developer -> [User app]: (6) <<build and enjoy!>>
+
+@enduml

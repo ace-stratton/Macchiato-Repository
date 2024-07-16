@@ -1,0 +1,10 @@
+@startuml
+
+[SerDesHelpers.py] <.. [GUI] : import
+[GuiHelpers.py] <.. [GUI] : import
+[GUI] ..> [ProtocolNameClientAppGui.yaml] : load interface GUI model
+[ProtocolNameClientApp.py] <.. [GUI] : dynamic load
+[User Python test script] ..> [ProtocolNameClientApp.py]: import
+[User Python test script] ..> [ESPS I dongle interface library]
+
+@enduml
