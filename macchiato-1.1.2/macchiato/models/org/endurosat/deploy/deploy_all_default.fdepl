@@ -8,6 +8,7 @@ import "../spec/CalibrationSpec.fdepl"
 import "../interfaces/PingPong.fidl"
 import "../interfaces/LED.fidl"
 import "../interfaces/Sharp.fidl"
+import "../interfaces/SoftwareTesting.fidl"
 
 /**
  * Defines configuration and interfaces for all models: their endianess, calibration configuration and whether to
@@ -26,7 +27,6 @@ define org.endurosat.spec.BasicSpec for interface endurosat.macif.PingPong {
     IsClient = false
 }
 
-
 define org.endurosat.spec.BasicSpec for interface endurosat.macif.PingPong {
     IsClient = true
 }
@@ -35,8 +35,15 @@ define org.endurosat.spec.BasicSpec for interface endurosat.macif.Sharp {
     IsClient = false
 }
 
-
 define org.endurosat.spec.BasicSpec for interface endurosat.macif.Sharp {
+    IsClient = true
+}
+
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.SoftwareTesting {
+    IsClient = false
+}
+
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.SoftwareTesting {
     IsClient = true
 }
 

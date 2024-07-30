@@ -1,10 +1,10 @@
 package endurosat.macif
 
 <** @description: Software Testing for PADRE
-    @details: id = 106 
+    @details: id = 109
 **>
 
-interface SoftwareTest
+interface SoftwareTesting
 {
     version { major 0 minor 1 }
     
@@ -236,10 +236,10 @@ interface SoftwareTest
     	in
     	{
     		<**@description: date to send command **>
-            sdate date
+            sdate dateSet
 
             <**@description: time to send command **>
-            stime time
+            stime timeSet
 
             <**@description: Echo value to return **>
             sEchoValue echoValueSend
@@ -268,10 +268,10 @@ interface SoftwareTest
             sEchoValue echoReturn 
 
             <**@description: date stamp of last command recieved **>
-            sdate date
+            sdate dateCommandReturn
 
             <**@description: time stamp of last command recieved **>
-            stime time
+            stime timeCommandReturn
 
             
     	}
@@ -297,24 +297,5 @@ interface SoftwareTest
     	}
     }
     
-    <** @description: Get current uptime and real time
-      @details: id = 0x000009
-    **>
-    method C6_getTime
-    {
-    	
-    	out
-    	{
-			<**@description: current uptime [sec] **>
-            UInt32 upTime
-            
-            <**@description: current date **>
-            sdate date
-
-            <**@description: current time **>
-            stime time
-            
-    	}
-    }
     
 }

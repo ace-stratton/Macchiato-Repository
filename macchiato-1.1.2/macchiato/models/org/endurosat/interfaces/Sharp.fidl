@@ -23,12 +23,6 @@ interface Sharp
         OFF
     }
 
-    <**@description: DetectorStatus (ON, OFF)**>
-    enumeration DetectorPower
-    {
-        ON, 
-        OFF
-    }
     
     <**@description: Date **>
     struct sdate
@@ -64,7 +58,7 @@ interface Sharp
     }
 
     <**@description: SHARP Fault Flag **>
-    struct sfaultstate
+    struct sfaultstateSharp
     {
         <** @description: Boolean flag if any faults are found **>
         Boolean faultflag
@@ -158,16 +152,6 @@ interface Sharp
         DetectorStatus status8
     }
 
-    <**@description: SHIP Status Indicator **>
-    struct sfaultstate
-    {
-        <** @description: Boolean flag if any faults are found **>
-        Boolean faultflag
-        
-        <** @description: Number of Faults, if more than 0 see getFaults **>
-        UInt8 faultcount
-    
-    }
 
     <**@description: SHIP Firmware and Software Version **>
     struct sSHIPVersion
@@ -250,7 +234,7 @@ interface Sharp
             stime time
 
             <**@description: fault flag indicator **>
-            sfaultstate faults
+            sfaultstateSharp faults
 
             <**@description: temperatures of detectors [C] **>
             sDetectorTemps temperatures
@@ -311,7 +295,7 @@ interface Sharp
     	}
     }
 
-    <** @description: Turns on and off individual detectors
+    <** @description: Sets SHARP time using GNSS or Manual 
       @details: id = 0x000004
     **>
     method setSharpTime
@@ -335,10 +319,10 @@ interface Sharp
     	}
     }
 
-    <** @description: Turns on and off individual detectors
-      @details: id = 0x000004
+    <** @description: Sets SHARP date using GNSS or manual
+      @details: id = 0x000005
     **>
-    method setSharpTime
+    method setSharpDate
     {
 
         in
@@ -347,7 +331,7 @@ interface Sharp
             Boolean GNSS
 
             <**@description: Manual time entry**>
-            stime time
+            sdate date
             
     	}
     	out
@@ -359,7 +343,7 @@ interface Sharp
     	}
     }
 
-    <** @description: Turns on and off individual detectors
+    <** @description: Gets current date and time of SHARP 
       @details: id = 0x000006
     **>
     method getSharpTimeDate
