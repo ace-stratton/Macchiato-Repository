@@ -15,12 +15,13 @@ import "../interfaces/SoftwareTesting.fidl"
  * generate client or server code
  */
 // Client generation
-define org.endurosat.spec.BasicSpec for interface myInterfaces.LED {
-    IsClient = true
-}
+
 
 define org.endurosat.spec.BasicSpec for interface myInterfaces.LED {
     IsClient = false
+}
+define org.endurosat.spec.BasicSpec for interface myInterfaces.LED {
+    IsClient = true
 }
 
 define org.endurosat.spec.BasicSpec for interface endurosat.macif.PingPong {
