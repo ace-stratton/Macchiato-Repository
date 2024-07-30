@@ -1,0 +1,380 @@
+package endurosat.macif
+
+<** @description: SHARP Communication Interface
+    @details: id = 105 
+**>
+
+interface Sharp
+{
+    version { major 0 minor 2 }
+    
+	<**@description: DetectorStatus (ON, OFF, ERROR)**>
+    enumeration DetectorStatus
+    {
+        ON, 
+        OFF,
+        ERROR
+    }
+    
+    <**@description: DetectorStatus (ON, OFF)**>
+    enumeration DetectorPower
+    {
+        ON, 
+        OFF
+    }
+
+    <**@description: DetectorStatus (ON, OFF)**>
+    enumeration DetectorPower
+    {
+        ON, 
+        OFF
+    }
+    
+    <**@description: Date **>
+    struct sdate
+    {
+        <**@description: This value can be in the range: 2000 <= year <= 2099 **>
+        UInt16 year
+        
+        <**@description: This value can be in the range: 1 <= month <= 12 **>
+        UInt8 mon
+        
+        <**@description: This value can be in the range: 1 <= month day <= 31 **>
+        UInt8 day
+
+    }
+
+    <**@description: Time **>
+    struct stime
+    {
+        <**@description: This value can be in the range: 0 <= hour <= 23 **>
+        UInt8  hour
+        
+        <**@description: This value can be in the range: 0 <= minutes <= 59 **>
+        UInt8  min
+        
+        <**@description: This value can be in the range: 0 <= seconds <= 59 **>
+        UInt8  sec
+        
+        <**@description: This value can be in the range: 0 <= milliseconds <= 999 **>
+        UInt16 ms
+        
+        <**@description: This value can be in the range: 0 <= microseconds <= 999 **>
+        UInt16 us
+    }
+
+    <**@description: SHARP Fault Flag **>
+    struct sfaultstate
+    {
+        <** @description: Boolean flag if any faults are found **>
+        Boolean faultflag
+        
+        <** @description: Number of Faults, if more than 0 see getFaults **>
+        UInt8 faultcount
+    
+    }
+
+    <**@description: SHARP Detector Temperatures [C]**>
+    struct sDetectorTemps
+    {
+        <** @description: Detector 1 Temperature [C]**>
+        UInt32 temp1
+
+        <** @description: Detector 2 Temperature [C]**>
+        UInt32 temp2
+
+        <** @description: Detector 3 Temperature [C]**>
+        UInt32 temp3
+
+        <** @description: Detector 4 Temperature [C]**>
+        UInt32 temp4
+
+        <** @description: Detector 5 Temperature [C]**>
+        UInt32 temp5
+
+        <** @description: Detector 6 Temperature [C]**>
+        UInt32 temp6
+
+        <** @description: Detector 7 Temperature [C]**>
+        UInt32 temp7
+
+        <** @description: Detector 8 Temperature [C]**>
+        UInt32 temp8
+    }
+
+    <**@description: SHARP Detector Voltages [V]**>
+    struct sDetectorVoltages
+    {
+        <** @description: Detector 1 Voltages [V]**>
+        UInt32 volt1
+
+        <** @description: Detector 2 Voltages [V]**>
+        UInt32 volt2
+
+        <** @description: Detector 3 Voltages [V]**>
+        UInt32 volt3
+
+        <** @description: Detector 4 Voltages [V]**>
+        UInt32 volt4
+
+        <** @description: Detector 5 Voltages [V]**>
+        UInt32 volt5
+
+        <** @description: Detector 6 Voltages [V]**>
+        UInt32 volt6
+
+        <** @description: Detector 7 Voltages [V]**>
+        UInt32 volt7
+
+        <** @description: Detector 8 Voltages [V]**>
+        UInt32 volt8
+    }
+
+    <**@description: SHARP Detector Status**>
+    struct sDetectorStatus
+    {
+        <** @description: Detector 1 Status**>
+        DetectorStatus status1
+
+        <** @description: Detector 2 Status**>
+        DetectorStatus status2
+
+        <** @description: Detector 3 Status**>
+        DetectorStatus status3
+
+        <** @description: Detector 4 Status**>
+        DetectorStatus status4
+
+        <** @description: Detector 5 Status**>
+        DetectorStatus status5
+
+        <** @description: Detector 6 Status**>
+        DetectorStatus status6
+
+        <** @description: Detector 7 Status**>
+        DetectorStatus status7
+
+        <** @description: Detector 8 Status**>
+        DetectorStatus status8
+    }
+
+    <**@description: SHIP Status Indicator **>
+    struct sfaultstate
+    {
+        <** @description: Boolean flag if any faults are found **>
+        Boolean faultflag
+        
+        <** @description: Number of Faults, if more than 0 see getFaults **>
+        UInt8 faultcount
+    
+    }
+
+    <**@description: SHIP Firmware and Software Version **>
+    struct sSHIPVersion
+    {
+        <** @description: Major Firmware Version **>
+        UInt16 firmwareMajor
+        
+        <** @description: Minor Firmware Version **>
+        UInt16 firmwareMinor
+
+        <** @description: Major Software Version **>
+        UInt16 softwareMajor
+        
+        <** @description: Minor Software Version **>
+        UInt16 softwareMinor
+    
+    }
+
+    <**@description: SHIP Firmware and Software Version **>
+    struct sFPGAVersion
+    {
+        <** @description: Major Firmware Version **>
+        UInt16 fpgafirmwareMajor
+        
+        <** @description: Minor Firmware Version **>
+        UInt16 fpgafirmwareMinor
+
+    
+    }
+
+    <**@description: SHIP Storage **>
+    struct sSHIPStorage
+    {
+        <** @description: Used Space [MB] **>
+        UInt32 usedShipSpace
+        
+        <** @description: Freespace left [MB] **>
+        UInt32 freeShipSpace
+
+    
+    }
+
+    <**@description: SHIP Power **>
+    struct sSHIPPower
+    {
+        
+        <** @description: Voltage [mV] **>
+        UInt32 voltageShip
+        
+        <** @description: Current [mA] **>
+        UInt32 currentShip
+
+    
+    }
+
+    <**@description: Shows status of sent command**>
+    enumeration eCommandExecutionReturn
+    {
+        SUCCESS, 
+        FAIL
+    }
+
+
+
+
+
+
+
+    <** @description: Pulls health info of SHARP Instrument
+      @details: id = 0x000001
+    **>
+    method getHealthInfo
+    {
+    	out
+    	{
+			<**@description: current date **>
+            sdate date
+
+            <**@description: current time **>
+            stime time
+
+            <**@description: fault flag indicator **>
+            sfaultstate faults
+
+            <**@description: temperatures of detectors [C] **>
+            sDetectorTemps temperatures
+
+            <**@description: voltages of detectors [V] **>
+            sDetectorVoltages voltages
+
+            <**@description: status of detectors **>
+            sDetectorStatus detectorStatus
+    	}
+    }
+
+
+    <** @description: Pulls SHIP Info
+      @details: id = 0x000002
+    **>
+    method getSHIPInfo
+    {
+    	out
+    	{
+			
+            <**@description: Firmware + Software Version **>
+            sSHIPVersion versioning
+
+            <**@description: FPGA Firmware Version **>
+            sFPGAVersion fpga_versioning
+
+            <**@description: SHIP Storage **>
+            sSHIPStorage shipStorage
+
+            <**@description: SHIP Power **>
+            sSHIPPower shipPower
+
+    	}
+    }
+
+    <** @description: Turns on and off individual detectors
+      @details: id = 0x000003
+    **>
+    method setDetectorPower
+    {
+
+        in
+    	{
+    		<**@description: Detector ID accepted values: 1-8**>
+            UInt32 detectorID
+            DetectorPower onOff
+    	}
+    	out
+    	{
+			
+            <**@description:  **>
+            DetectorPower opResult
+
+            <**@description: status of detectors **>
+            sDetectorStatus detectorStatus
+
+    	}
+    }
+
+    <** @description: Turns on and off individual detectors
+      @details: id = 0x000004
+    **>
+    method setSharpTime
+    {
+
+        in
+    	{
+    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
+            Boolean GNSS
+
+            <**@description: Manual time entry**>
+            stime time
+            
+    	}
+    	out
+    	{
+			
+            <**@description: Status of sent command **>
+            eCommandExecutionReturn executionSuccess
+
+    	}
+    }
+
+    <** @description: Turns on and off individual detectors
+      @details: id = 0x000004
+    **>
+    method setSharpTime
+    {
+
+        in
+    	{
+    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
+            Boolean GNSS
+
+            <**@description: Manual time entry**>
+            stime time
+            
+    	}
+    	out
+    	{
+			
+            <**@description: Status of sent command **>
+            eCommandExecutionReturn executionSuccess
+
+    	}
+    }
+
+    <** @description: Turns on and off individual detectors
+      @details: id = 0x000006
+    **>
+    method getSharpTimeDate
+    {
+
+    	out
+    	{
+			
+            <**@description: current time**>
+            stime time
+
+            <**@description: current date**>
+            sdate date
+
+    	}
+    }
+    
+}

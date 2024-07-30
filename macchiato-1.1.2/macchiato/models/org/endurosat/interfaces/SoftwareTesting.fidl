@@ -1,0 +1,320 @@
+package endurosat.macif
+
+<** @description: Software Testing for PADRE
+    @details: id = 106 
+**>
+
+interface SoftwareTest
+{
+    version { major 0 minor 1 }
+    
+	<**@description: Reset Modes**>
+    enumeration eResetModes
+    {
+        RESET1,
+        RESET2,
+        RESET3,
+        RESET4
+    }
+
+    <**@description: OperationalModes (SAFE, HELL, ERROR)**>
+    enumeration eOpModes
+    {
+        SAFE,
+        HELL,
+        ERROR
+    }
+
+    <**@description: Command recieve counts**>
+    struct sCommandCount
+    {
+        UInt32 CommandCount
+    }
+
+    <**@description: Command Verification Modes**>
+    enumeration eVerificationModes
+    {
+        NOMINAL, 
+        ECHO,
+        COUNT,
+        ECHO_AND_COUNT
+    }
+
+    <**@description: Echo Command Value**>
+    struct sEchoValue
+    {
+        UInt32 echoValue 
+    }
+
+    <**@description: Instrument Selection**>
+    enumeration eInstrumentOpt
+    {
+        SHARP,
+        MeDDEA
+    }
+
+    <**@description: Instrument Power Selection**>
+    enumeration eInstrumentPower
+    {
+        NO_CHANGE,
+        POWER_ON,
+        POWER_OFF
+    }
+
+    <**@description: Shows status of sent command**>
+    enumeration eCommandExecutionReturn
+    {
+        SUCCESS, 
+        FAIL
+    }
+
+    <**@description: Date **>
+    struct sdate
+    {
+        <**@description: This value can be in the range: 2000 <= year <= 2099 **>
+        UInt16 year
+        
+        <**@description: This value can be in the range: 1 <= month <= 12 **>
+        UInt8 mon
+        
+        <**@description: This value can be in the range: 1 <= month day <= 31 **>
+        UInt8 day
+
+    }
+
+    <**@description: Time **>
+    struct stime
+    {
+        <**@description: This value can be in the range: 0 <= hour <= 23 **>
+        UInt8  hour
+        
+        <**@description: This value can be in the range: 0 <= minutes <= 59 **>
+        UInt8  min
+        
+        <**@description: This value can be in the range: 0 <= seconds <= 59 **>
+        UInt8  sec
+        
+        <**@description: This value can be in the range: 0 <= milliseconds <= 999 **>
+        UInt16 ms
+        
+        <**@description: This value can be in the range: 0 <= microseconds <= 999 **>
+        UInt16 us
+    }
+
+
+
+
+
+
+    <** @description: Reset FSW for different reasons (No response of instrument, not sure what else).  Report back operating mode
+      @details: id = 0x000001
+    **>
+    method OM1_OpModeReset
+    {
+    	in
+    	{
+    		<**@description: Desired rest mode of the satellite**>
+            eResetModes resetMode
+    	}
+    	out
+    	{
+            <**@description: Current operational mode of satellite**>
+			eOpModes opMode
+    	}
+    }
+
+    <** @description: Send many noop commands to check that it can handle the max rate
+      @details: id = 0x000002
+    **>
+    method OM2_CommandFlood
+    {
+    	in
+    	{
+    		<**@description: Sends noop commands at xx speed**>
+            UInt32 commandSendSpeed
+    	}
+    	out
+    	{
+			<**@description: Number of total commands recieved**>
+            sCommandCount numOfCommandsRecieved
+    	}
+    }
+
+    <** @description: Set command verification to echo and/or count
+      @details: id = 0x000003
+    **>
+    method C1_CommandVerification
+    {
+    	in
+    	{
+    		<**@description: Type of command to send**>
+            eVerificationModes verificationMode
+            
+            <**@description: Number of echo/count commands to send (Only if COUNT is selected)**>
+            UInt32 numSendCommands
+
+            <**@description: Echo value to return (Only if ECHO is selected)**>
+            sEchoValue echoValueSend
+
+    	}
+    	out
+    	{
+			<**@description: Current verification mode**>
+            eVerificationModes verificationModeReturn
+
+            <**@description: Number of commands recieved**>
+            sCommandCount numOfCommandsRecieved
+            
+            <**@description: Echo value return**>
+            sEchoValue echoReturn 
+            
+    	}
+    }
+
+    <** @description: Test command verification to instruments
+      @details: id = 0x000004
+    **>
+    method C2_InstrumentVerification
+    {
+    	in
+    	{
+    		<**@description: Instrument selection**>
+            eInstrumentOpt instrumentSelection
+
+            <**@description: Instrument power**>
+            eInstrumentPower powerSelection
+
+            <**@description: Echo value to return **>
+            sEchoValue echoValueSend
+
+    	}
+    	out
+    	{
+			<**@description: Current instrument**>
+            eInstrumentOpt instrumentSelectionReturn
+
+            <**@description: Instrument power return**>
+            eInstrumentPower powerSelectionReturn
+
+            <**@description: Number of commands recieved**>
+            sCommandCount numOfCommandsRecieved
+            
+            <**@description: Echo value return**>
+            sEchoValue echoReturn 
+            
+    	}
+    }
+
+    <** @description: Test command execution at a relative time
+      @details: id = 0x000005
+    **>
+    method C4_CommandExecutionRelativeTiming
+    {
+    	in
+    	{
+    		<**@description: Time from now to execute echo command [sec]**>
+            UInt32 timeDelay
+
+            <**@description: Echo value to return **>
+            sEchoValue echoValueSend
+
+
+    	}
+    	out
+    	{
+			<**@description: Command execution status**>
+            eCommandExecutionReturn commandReturn
+            
+    	}
+    }
+
+    <** @description: Test command execution at a relative time
+      @details: id = 0x000006
+    **>
+    method C5_CommandExecutionAbsoluteTiming
+    {
+    	in
+    	{
+    		<**@description: date to send command **>
+            sdate date
+
+            <**@description: time to send command **>
+            stime time
+
+            <**@description: Echo value to return **>
+            sEchoValue echoValueSend
+
+
+    	}
+    	out
+    	{
+			<**@description: Command execution status**>
+            eCommandExecutionReturn commandReturn
+            
+    	}
+    }
+
+    <** @description: Test the success of command execution at a absolute time or relative time
+      @details: id = 0x000007
+    **>
+    method getCommandExecutionTiming
+    {
+    	out
+    	{
+			<**@description: Number of commands recieved**>
+            sCommandCount numOfCommandsRecieved
+            
+            <**@description: Echo value return**>
+            sEchoValue echoReturn 
+
+            <**@description: date stamp of last command recieved **>
+            sdate date
+
+            <**@description: time stamp of last command recieved **>
+            stime time
+
+            
+    	}
+    }
+
+    <** @description: Get current uptime and real time
+      @details: id = 0x000008
+    **>
+    method C6_getTime
+    {
+    	
+    	out
+    	{
+			<**@description: current uptime [sec] **>
+            UInt32 upTime
+            
+            <**@description: current date **>
+            sdate date
+
+            <**@description: current time **>
+            stime time
+            
+    	}
+    }
+    
+    <** @description: Get current uptime and real time
+      @details: id = 0x000009
+    **>
+    method C6_getTime
+    {
+    	
+    	out
+    	{
+			<**@description: current uptime [sec] **>
+            UInt32 upTime
+            
+            <**@description: current date **>
+            sdate date
+
+            <**@description: current time **>
+            stime time
+            
+    	}
+    }
+    
+}
