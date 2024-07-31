@@ -9,6 +9,8 @@ import "../interfaces/PingPong.fidl"
 import "../interfaces/LED.fidl"
 import "../interfaces/Sharp.fidl"
 import "../interfaces/SoftwareTesting.fidl"
+import "../interfaces/Meddea.fidl"
+import "../interfaces/FSWGeneral.fidl"
 
 /**
  * Defines configuration and interfaces for all models: their endianess, calibration configuration and whether to
@@ -48,3 +50,18 @@ define org.endurosat.spec.BasicSpec for interface endurosat.macif.SoftwareTestin
     IsClient = true
 }
 
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.FSWGeneral {
+    IsClient = false
+}
+
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.FSWGeneral {
+    IsClient = true
+}
+
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.Meddea {
+    IsClient = false
+}
+
+define org.endurosat.spec.BasicSpec for interface endurosat.macif.Meddea {
+    IsClient = true
+}

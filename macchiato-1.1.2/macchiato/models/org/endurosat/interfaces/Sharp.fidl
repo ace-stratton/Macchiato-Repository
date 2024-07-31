@@ -6,7 +6,7 @@ package endurosat.macif
 
 interface Sharp
 {
-    version { major 0 minor 2 }
+    version { major 0 minor 3 }
     
 	<**@description: DetectorStatus (ON, OFF, ERROR)**>
     enumeration DetectorStatus
@@ -214,6 +214,27 @@ interface Sharp
         FAIL
     }
 
+    <**@description: Possible SHARP Modes**>
+    enumeration eSHARPModes
+    {
+        SHARP_IDLE_MODE,
+        SHARP_Low_Power_Mode,
+        SHARP_Engineering_Mode,
+        SHARP_Nominal_Science_Mode,
+        SHARP_Fast_Readout_Science_Mode,
+        SHARP_Safe_Mode,
+        SHARP_State_Machine_Off,
+        SHARP_State_Machine_On
+    }
+
+    <**@description: Command Parameters**>
+    struct sSHARPParameters
+    {
+        UInt32 parameter1
+        UInt32 parameter2
+        UInt32 parameter3
+    }
+
 
 
 
@@ -357,6 +378,53 @@ interface Sharp
 
             <**@description: current date**>
             sdate date
+
+    	}
+    }
+
+    <** @description: Gets current mode of SHARP 
+      @details: id = 0x000007
+    **>
+    method getSharpMode
+    {
+
+    	out
+    	{
+			
+            <**@description: current parameters**>
+            sSHARPParameters parameters
+
+            <**@description: current mode**>
+            eSHARPModes mode
+
+    	}
+    }
+
+    <** @description: Sets current mode of SHARP 
+      @details: id = 0x000008
+    **>
+    method setSharpMode
+    {
+        in
+        {
+            <**@description: parameters, if any, for mode. otherwise leave blank**>
+            sSHARPParameters parameters
+
+            <**@description: mode to set SHARP to**>
+            eSHARPModes mode
+        }
+    	
+        out
+    	{
+			
+            <**@description: operation success**>
+            eCommandExecutionReturn opResult
+            
+            <**@description: current parameters**>
+            sSHARPParameters parameters
+
+            <**@description: current mode**>
+            eSHARPModes mode
 
     	}
     }

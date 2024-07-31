@@ -1,0 +1,219 @@
+package endurosat.macif
+
+<** @description: Interface to send general commands as well as commands to both instruments at once
+    @details: id = 104 
+**>
+
+interface FSWGeneral
+{
+    version { major 0 minor 1 }
+
+    <**@description: Shows status of sent command**>
+    enumeration eCommandExecutionReturn
+    {
+        SUCCESS, 
+        FAIL
+    }
+
+    <**@description: Shows if two values match**>
+    enumeration eMatch
+    {
+        MATCH,
+        NO_MATCH
+    }
+
+    <**@description: General modes for both instruments with no paramters**>
+    enumeration eInstrumentModes
+    {
+        IDLE_Mode,
+        Engineering_Mode,
+        Nominal_Science_Mode, 
+        Safe_Mode,
+        Inst_Off_Mode
+    }
+
+    <**@description: Possible MEDDEA Modes**>
+    enumeration eMEDDEAModes
+    {
+        MEDDEA_IDLE_MODE,
+        MEDDEA_Engineering_Mode,
+        MEDDEA_Nominal_Science_Mode,
+        MEDDEA_Reduced_Readout_Science_Mode,
+        MEDDEA_Depolarization_Mode,
+        MEDDEA_Ramp_Mode,
+        MEDDEA_Pulser_Calibration_Mode,
+        MEDDEA_Safe_Mode,
+        MEDDEA_Off_Mode
+    }
+
+    <**@description: Possible SHARP Modes**>
+    enumeration eSHARPModes
+    {
+        SHARP_IDLE_MODE,
+        SHARP_Low_Power_Mode,
+        SHARP_Engineering_Mode,
+        SHARP_Nominal_Science_Mode,
+        SHARP_Fast_Readout_Science_Mode,
+        SHARP_Safe_Mode,
+        SHARP_State_Machine_Off,
+        SHARP_State_Machine_On
+    }
+
+    <**@description: Date **>
+    struct sdate
+    {
+        <**@description: This value can be in the range: 2000 <= year <= 2099 **>
+        UInt16 year
+        
+        <**@description: This value can be in the range: 1 <= month <= 12 **>
+        UInt8 mon
+        
+        <**@description: This value can be in the range: 1 <= month day <= 31 **>
+        UInt8 day
+
+    }
+
+    <**@description: Time **>
+    struct stime
+    {
+        <**@description: This value can be in the range: 0 <= hour <= 23 **>
+        UInt8  hour
+        
+        <**@description: This value can be in the range: 0 <= minutes <= 59 **>
+        UInt8  min
+        
+        <**@description: This value can be in the range: 0 <= seconds <= 59 **>
+        UInt8  sec
+        
+        <**@description: This value can be in the range: 0 <= milliseconds <= 999 **>
+        UInt16 ms
+        
+        <**@description: This value can be in the range: 0 <= microseconds <= 999 **>
+        UInt16 us
+    }
+
+
+
+
+
+    <** @description: Sets both instruments time using GNSS or Manual 
+      @details: id = 0x000001
+    **>
+    method setInstrumentTime
+    {
+
+        in
+    	{
+    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
+            Boolean GNSS
+
+            <**@description: Manual time entry**>
+            stime time
+            
+    	}
+    	out
+    	{
+			
+            <**@description: Status of sent command **>
+            eCommandExecutionReturn executionSuccess
+
+    	}
+    }
+
+    <** @description: Sets both instruments date using GNSS or manual
+      @details: id = 0x000002
+    **>
+    method setInstrumentDate
+    {
+
+        in
+    	{
+    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
+            Boolean GNSS
+
+            <**@description: Manual time entry**>
+            sdate date
+            
+    	}
+    	out
+    	{
+			
+            <**@description: Status of sent command **>
+            eCommandExecutionReturn executionSuccess
+
+    	}
+    }
+
+    <** @description: Gets current date and time of both instruments 
+      @details: id = 0x000003
+    **>
+    method getInstrumentTimeDate
+    {
+
+    	out
+    	{
+			
+            <**@description: shows whether both instrument times match**>
+            eMatch match
+            
+            <**@description: current SHARP time**>
+            stime timeSharp
+
+            <**@description: current SHARP date**>
+            sdate dateSharp
+
+            <**@description: current MeDDEA time**>
+            stime timeMeddea
+
+            <**@description: current MeDDEA date**>
+            sdate dateMeddea
+
+    	}
+    }
+
+    <** @description: Gets current modes of both instruments
+      @details: id = 0x000004
+    **>
+    method getInstrumentModes
+    {
+
+    	out
+    	{
+			
+            <**@description: current SHARP mode**>
+            eSHARPModes modeSharp
+            
+            <**@description: current MeDDEA mode**>
+            eMEDDEAModes modeMeddea
+
+    	}
+    }
+
+    <** @description: Sets general mode to both instruments 
+      @details: id = 0x000005
+    **>
+    method setInstrumentModes
+    {
+        in
+        {
+
+            <**@description: mode to set both instruments to**>
+            eInstrumentModes modeGeneral
+        }
+    	
+        out
+    	{
+			
+            <**@description: operation success**>
+            eCommandExecutionReturn opResult
+            
+            <**@description: current SHARP mode**>
+            eSHARPModes modeSharp
+            
+            <**@description: current MeDDEA mode**>
+            eMEDDEAModes modeMeddea
+
+    	}
+    }
+
+}
