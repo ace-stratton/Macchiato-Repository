@@ -11,6 +11,7 @@ import "../interfaces/Sharp.fidl"
 import "../interfaces/SoftwareTesting.fidl"
 import "../interfaces/Meddea.fidl"
 import "../interfaces/FSWGeneral.fidl"
+import "../interfaces/OBC.fidl"
 
 /**
  * Defines configuration and interfaces for all models: their endianess, calibration configuration and whether to
@@ -65,3 +66,5 @@ define org.endurosat.spec.BasicSpec for interface endurosat.macif.Meddea {
 define org.endurosat.spec.BasicSpec for interface endurosat.macif.Meddea {
     IsClient = true
 }
+
+

@@ -6,7 +6,7 @@ package endurosat.macif
 
 interface Sharp
 {
-    version { major 0 minor 3 }
+    version { major 0 minor 4 }
     
 	<**@description: DetectorStatus (ON, OFF, ERROR)**>
     enumeration DetectorStatus
@@ -23,7 +23,15 @@ interface Sharp
         OFF
     }
 
+    <**@description: SHARP Error Code **>
+    struct sErrorCodeSharp
+    {
+        
+        <** @description: 0 = No Error, Error with opResult SUCCESS = Warning, Error with opResult FAILURE = Error **>
+        UInt8 errorCode
     
+    }
+
     <**@description: Date **>
     struct sdate
     {
@@ -227,13 +235,6 @@ interface Sharp
         SHARP_State_Machine_On
     }
 
-    <**@description: Command Parameters**>
-    struct sSHARPParameters
-    {
-        UInt32 parameter1
-        UInt32 parameter2
-        UInt32 parameter3
-    }
 
 
 
@@ -310,6 +311,9 @@ interface Sharp
             <**@description:  **>
             DetectorPower opResult
 
+            <**@description:  **>
+            sErrorCodeSharp ErrorCode
+
             <**@description: status of detectors **>
             sDetectorStatus detectorStatus
 
@@ -324,7 +328,9 @@ interface Sharp
 
         in
     	{
-    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
+
+            
+            <**@description: Set using GNSS or Manual? (ON = GNSS)**>
             Boolean GNSS
 
             <**@description: Manual time entry**>
@@ -337,6 +343,9 @@ interface Sharp
             <**@description: Status of sent command **>
             eCommandExecutionReturn executionSuccess
 
+            <**@description:  **>
+            sErrorCodeSharp ErrorCode
+
     	}
     }
 
@@ -348,7 +357,9 @@ interface Sharp
 
         in
     	{
-    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
+    		
+            
+            <**@description: Set using GNSS or Manual? (ON = GNSS)**>
             Boolean GNSS
 
             <**@description: Manual time entry**>
@@ -360,6 +371,9 @@ interface Sharp
 			
             <**@description: Status of sent command **>
             eCommandExecutionReturn executionSuccess
+
+            <**@description:  **>
+            sErrorCodeSharp ErrorCode
 
     	}
     }
@@ -390,9 +404,6 @@ interface Sharp
 
     	out
     	{
-			
-            <**@description: current parameters**>
-            sSHARPParameters parameters
 
             <**@description: current mode**>
             eSHARPModes mode
@@ -407,8 +418,6 @@ interface Sharp
     {
         in
         {
-            <**@description: parameters, if any, for mode. otherwise leave blank**>
-            sSHARPParameters parameters
 
             <**@description: mode to set SHARP to**>
             eSHARPModes mode
@@ -419,9 +428,9 @@ interface Sharp
 			
             <**@description: operation success**>
             eCommandExecutionReturn opResult
-            
-            <**@description: current parameters**>
-            sSHARPParameters parameters
+
+            <**@description:  **>
+            sErrorCodeSharp ErrorCode
 
             <**@description: current mode**>
             eSHARPModes mode
