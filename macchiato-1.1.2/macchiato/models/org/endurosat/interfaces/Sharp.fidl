@@ -235,10 +235,52 @@ interface Sharp
         SHARP_State_Machine_On
     }
 
+    <**@description: Shows status of returned telemetry, Good = Up to date, Old = Returning most recently returned data but its not current**>
+    enumeration eTelemetryStatus
+    {
+        GOOD,
+        OLD
+    }
+
+    <**@description: Raw telemetry returned from SHARP **>
+    struct sRawTelemetry
+    {
+        
+        <** @description: apID **>
+        UInt16 apID
+
+        <** @description: Sequence count **>
+        UInt16 sequenceCount
+
+        <** @description: Number of packet bytes **>
+        UInt16 packetNumBytes
+
+        <** @description: Time [s]**>
+        UInt32 timeTelemetryRaw
+
+        <** @details: size = 32 **>
+        UInt8[] dataArray
+        
+    }
 
 
 
 
+    <** @description: Pulls the raw telemetry from SHARP
+      @details: id = 0x000009
+    **>
+    method getRawSharpHK
+    {
+    	out
+    	{
+			<**@description: Shows status of returned telemetry, Good = Up to date, Old = Returning most recently returned data but its not current **>
+            eTelemetryStatus telemetryStatus
+
+            <**@description: raw data **>
+            sRawTelemetry rawTelemetry
+        
+    	}
+    }
 
 
 
