@@ -6,7 +6,7 @@ package endurosat.macif
 
 interface Meddea
 {
-    version { major 0 minor 1 }
+    version { major 0 minor 2 }
 
 
     <**@description: Shows status of sent command**>
@@ -19,58 +19,30 @@ interface Meddea
     <**@description: Possible MEDDEA Modes**>
     enumeration eMEDDEAModes
     {
-        MEDDEA_IDLE_MODE,
+        MEDDEA_Off_Mode, 
+        MEDDEA_Safe_Mode,
         MEDDEA_Engineering_Mode,
-        MEDDEA_Nominal_Science_Mode,
-        MEDDEA_Reduced_Readout_Science_Mode,
+        MEDDEA_Idle_Mode,
         MEDDEA_Depolarization_Mode,
         MEDDEA_Ramp_Mode,
-        MEDDEA_Pulser_Calibration_Mode,
-        MEDDEA_Safe_Mode,
-        MEDDEA_Off_Mode
+        MEDDEA_Science_Mode,
+        MEDDEA_Reduced_Science_Mode,
+        MEDDEA_Pulser_Calibration_Mode
     }
 
-    <**@description: Command Parameters**>
-    struct sMEDDEAParameters
+    <**@description: Bytes to be read and written to MeDDEA **>
+    struct sReadWriteMEDDEA
     {
-        UInt32 parameter1
-        UInt32 parameter2
-        UInt32 parameter3
+        
+        <** @description: Register ID **>
+        UInt16 regID
+
+        <** @details: size = 12 **>
+        UInt16[] readwriteBytes
+        
     }
 
-    <**@description: Date **>
-    struct sdate
-    {
-        <**@description: This value can be in the range: 2000 <= year <= 2099 **>
-        UInt16 year
-        
-        <**@description: This value can be in the range: 1 <= month <= 12 **>
-        UInt8 mon
-        
-        <**@description: This value can be in the range: 1 <= month day <= 31 **>
-        UInt8 day
-
-    }
-
-    <**@description: Time **>
-    struct stime
-    {
-        <**@description: This value can be in the range: 0 <= hour <= 23 **>
-        UInt8  hour
-        
-        <**@description: This value can be in the range: 0 <= minutes <= 59 **>
-        UInt8  min
-        
-        <**@description: This value can be in the range: 0 <= seconds <= 59 **>
-        UInt8  sec
-        
-        <**@description: This value can be in the range: 0 <= milliseconds <= 999 **>
-        UInt16 ms
-        
-        <**@description: This value can be in the range: 0 <= microseconds <= 999 **>
-        UInt16 us
-    }
-
+   
 
 
 
@@ -83,12 +55,9 @@ interface Meddea
 
     	out
     	{
-			
-            <**@description: current parameters**>
-            sMEDDEAParameters parameters
 
             <**@description: current mode**>
-            eMEDDEAModes mode
+            eMEDDEAModes currentMode
 
     	}
     }
@@ -100,11 +69,8 @@ interface Meddea
     {
         in
         {
-            <**@description: parameters, if any, for mode. otherwise leave blank**>
-            sMEDDEAParameters parameters
-
             <**@description: mode to set MEDDEA to**>
-            eMEDDEAModes mode
+            eMEDDEAModes setMode
         }
     	
         out
@@ -112,81 +78,50 @@ interface Meddea
 			
             <**@description: operation success**>
             eCommandExecutionReturn opResult
-            
-            <**@description: current parameters**>
-            sMEDDEAParameters parameters
 
             <**@description: current mode**>
-            eMEDDEAModes mode
+            eMEDDEAModes currentMode
 
     	}
     }
 
-    <** @description: Sets MEDDEA time using GNSS or Manual 
+    <** @description: Writes to MeDDEA 
       @details: id = 0x000003
     **>
-    method setMEDDEATime
+    method writeMEDDEA
     {
-
         in
-    	{
-    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
-            Boolean GNSS
-
-            <**@description: Manual time entry**>
-            stime time
-            
-    	}
-    	out
+        {
+            <**@description: What to write to MeDDEA and where**>
+            sReadWriteMEDDEA writeData
+        }
+    	
+        out
     	{
 			
-            <**@description: Status of sent command **>
-            eCommandExecutionReturn executionSuccess
+            <**@description: operation success**>
+            eCommandExecutionReturn opResult
+
 
     	}
     }
 
-    <** @description: Sets MEDDEA date using GNSS or manual
+
+    <** @description: Reads from MeDDEA 
       @details: id = 0x000004
     **>
-    method setMEDDEADate
+    method readMEDDEA
     {
-
-        in
+        out
     	{
-    		<**@description: Set using GNSS or Manual? (ON = GNSS)**>
-            Boolean GNSS
 
-            <**@description: Manual time entry**>
-            sdate date
-            
-    	}
-    	out
-    	{
-			
-            <**@description: Status of sent command **>
-            eCommandExecutionReturn executionSuccess
+            <**@description: Response from MeDDEA**>
+            sReadWriteMEDDEA readData
+
 
     	}
     }
 
-    <** @description: Gets current date and time of MEDDEA 
-      @details: id = 0x000005
-    **>
-    method getMEDDEATimeDate
-    {
-
-    	out
-    	{
-			
-            <**@description: current time**>
-            stime time
-
-            <**@description: current date**>
-            sdate date
-
-    	}
-    }
-
+    
     
 }
